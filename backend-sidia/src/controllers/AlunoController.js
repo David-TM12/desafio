@@ -2,11 +2,13 @@ const Aluno = require('../models/Aluno');
 
 module.exports = {
     async store(req, res) {
-        const { name, email} = req.body;
+        const { name, email, password} = req.body;
 
+        console.log(name, email, password);
         const aluno = await Aluno.create({
             name,
-            email 
+            password,
+            email,
         });
 
 
