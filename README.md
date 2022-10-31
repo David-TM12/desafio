@@ -22,7 +22,7 @@
    $ yarn
    
    - Levantar o container do banco de dados:
-   $ docker.compose up -d
+   $ docker-compose up -d
 
    - Criar o banco de dados 
    $ yarn sequelize db:create
