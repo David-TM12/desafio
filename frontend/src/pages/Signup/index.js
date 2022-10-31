@@ -36,7 +36,7 @@ const Signup = () => {
 
   return (
     <C.Container>
-      <C.Label>REGISTRO</C.Label>
+      <C.Label>CADASTRO DE USUARIO</C.Label>
       <C.Content>
         <Input
           type="email"
