@@ -21,3 +21,21 @@
    - Criar as tabelas via migrations 
    $ yarn typeorm db:create
    ```
+
+   <h3 align="left">Frontend</h3>
+
+   ```
+   - Clone esse repositório:
+   $ ?
+
+   - Entre no diretório:
+   $ ?
+
+   - Instalar as dependências do projeto:
+   $ ?
+   
+
+
+
+   
+   ```
