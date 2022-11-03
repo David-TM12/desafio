@@ -2,22 +2,60 @@ const Aluno = require('../models/Aluno');
 
 module.exports = {
     async store(req, res) {
-        const { name, email, password} = req.body;
+        try {
+            const { name, email, senha } = req.body;
 
-        console.log(name, email, password);
-        const aluno = await Aluno.create({
-            name,
-            password,
-            email,
-        });
+            const emailExists = await Aluno.findOne({
+                where: { email}
+            });
 
+            if(emailExists) {
+                return res.json({error: true, message: 'Já existe um usuário com esse email!!!'});
+            }
 
-        return res.json(aluno);
+            await Aluno.create({
+                name,
+                password: senha,
+                email,
+            });
+
+            return res.status(201).send({message: 'cadastrado com sucesso!!!'});
+        } catch (error) {
+            return res.status(500).json({error: true, message: error.message});
+        }
     },
 
-    async index(req, res){
+    async index(req, res) {
         const alunos = await Aluno.findAll();
 
         return res.json(alunos);
+    },
+
+    async getAlunoByEmail(req, res) {
+        try {
+            const { email, senha } = req.body;
+
+            const aluno = await Aluno.findOne({
+                where: {
+                    email: email,
+                    password: senha
+                }
+            });
+
+            if (!aluno) {
+                return res.status(404).json({ message: 'Aluno não encontrado' });
+            }
+
+            const alunoDto = {
+                id: aluno.id,
+                name: aluno.name,
+                email: aluno.email,
+            }
+
+            return res.status(200).json(alunoDto);
+
+        } catch (error) {
+            return res.status(500).json({ message: error.message });
+        }
     }
 }

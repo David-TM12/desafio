@@ -7,6 +7,7 @@ const routes = express.Router();
 
 routes.post('/alunos', AlunoController.store);
 routes.get('/', AlunoController.index);
+routes.post('/alunos/login', AlunoController.getAlunoByEmail);
 
 routes.get('/', ProfessorController.index);
 routes.post('/professores', ProfessorController.store);
