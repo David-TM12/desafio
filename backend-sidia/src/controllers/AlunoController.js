@@ -21,7 +21,7 @@ module.exports = {
 
             return res.status(201).send({status: 201, message: 'cadastrado com sucesso!!!'});
         } catch (error) {
-            return res.status(500).json({error: true, message: error.message});
+            return res.status(500).json({status: 500, error: true, message: error.message});
         }
     },
 
@@ -43,7 +43,7 @@ module.exports = {
             });
 
             if (!aluno) {
-                return res.status(404).json({ message: 'Aluno não encontrado' });
+                return res.json({status: 404, message: 'Aluno não encontrado' });
             }
 
             const alunoDto = {
@@ -52,10 +52,10 @@ module.exports = {
                 email: aluno.email,
             }
 
-            return res.status(200).json(alunoDto);
+            return res.json({status: 201, alunoDto});
 
         } catch (error) {
-            return res.status(500).json({ message: error.message });
+            return res.json({status: 500, message: error.message });
         }
     }
 }

@@ -3,7 +3,7 @@ import { Button } from "../../components/Button";
 import { Input } from "../../components/Input";
 import { useState, ChangeEvent, useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import {  useAuth } from "../../hooks/userAuth";
+import { useAuth } from "../../hooks/userAuth";
 
 interface UserProps {
     email: string;
@@ -17,14 +17,16 @@ export function Signin() {
     const [error, setError] = useState('');
     const navigate = useNavigate();
     const { signin } = useAuth();
-    
+
 
     async function handleLogin() {
-        const data = {
-            email: email,
-            senha: senha
+
+        const response = await signin({ email, senha });
+
+        if (response.status != 201) {
+            setError(response.message ?? ' ');
+            return;
         }
-       await signin(data);
 
         navigate('/home');
     }

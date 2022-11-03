@@ -5,13 +5,13 @@ import { useAuth } from "../../hooks/userAuth";
 
 export function Home() {
     const navigate = useNavigate();
-    const user = useAuth();
+    const { user } = useAuth();
 
 
     return (
         <C.Container>
             <C.Title>AGENDAMENTO DE AULAS</C.Title>
-                <C.Label> Seja bem vindo {user.user.name}</C.Label>
+                <C.Label> Seja bem vindo {user.name}</C.Label>
             <Button Text="Sair" onClick={() => [navigate("/")]} />
         </C.Container>
     )

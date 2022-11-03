@@ -25,7 +25,7 @@ type UserSignup  =  Omit<UserProps, 'id'>;
 
 type  UserContextProps = { 
     user: UserResponse ,
-    signin: ({ email, senha }: UserSignin) => Promise<void>
+    signin: ({ email, senha }: UserSignin) => Promise<Response>
     signup: ({ email, senha, name }: UserSignup) => Promise<Response>
 }
 
@@ -39,13 +39,15 @@ export function AuthProvider({ children }: ContextProps) {
 
         const response = await api.post('/alunos/login', { email, senha });
 
-        if (!response.data.email) {
+        if (response.data.status != 201) {
             return response.data;
         }
 
-        const id = response.data.id;
-        const name = response.data.name;
+        const id = response.data.alunoDto.id;
+        const name = response.data.alunoDto.name;
         setUser({ id, email, name });
+
+        return response.data;
     }
 
     async function signup ({email, senha, name}: UserSignup)  {
