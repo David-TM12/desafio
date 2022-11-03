@@ -19,7 +19,7 @@ module.exports = {
                 email,
             });
 
-            return res.status(201).send({message: 'cadastrado com sucesso!!!'});
+            return res.status(201).send({status: 201, message: 'cadastrado com sucesso!!!'});
         } catch (error) {
             return res.status(500).json({error: true, message: error.message});
         }

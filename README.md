@@ -46,7 +46,7 @@
    $ yarn
 
    - Executar o projeto:
-   $ yarn start
+   $ yarn dev
    
 
 
